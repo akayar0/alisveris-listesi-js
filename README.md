@@ -15,7 +15,3 @@ Bu proje, Vanilla JavaScript kullanılarak geliştirilmiş, kullanıcı dostu ve
 - **JavaScript (ES6+):** DOM manipülasyonu ve uygulama mantığı.
 - **Bootstrap Icons:** Kullanıcı arayüzü simgeleri.
 
-## 📂 Kurulum
-1. Bu depoyu klonlayın:
-   ```bash
-   git clone [https://github.com/akayar0/alisveris-listesi-js.git](https://github.com/akayar0/alisveris-listesi-js.git)
