@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UYGULAMA</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    
+    <h1>ALIŞVERİŞ LİSTESİ HAZIRLAMA</h1>
+    <div class="input-wrapper">
+    <input type="text" id="todoInput" placeholder="Ürün ekleyiniz." oninput="toggleClearButton()">
+    <i class="bi bi-x-lg" id="clearInput" onclick="temizle()"></i>
+</div>
+    <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 20px;">
+        <button class="ekle" onclick="ekle()">Ekle</button>
+        <button class="delete" onclick="kaldir()">Tümünü Kaldır</button>
+    </div>
+
+    <p id="emptyMessage" style="text-align: center; color: #ccc; font-style: italic;">Liste şu an boş.</p>    
+
+        <ul id="todoList">
+
+        </ul>
+
+</body>
+
+
+<script>
+    const todoInput=document.getElementById("todoInput")  
+    const todoList=document.getElementById("todoList")
+
+    todoInput.addEventListener("keypress", function(e) {
+    // Eğer basılan tuş "Enter" ise (Key Code 13)
+    if (e.key === "Enter") {
+        // Sayfanın yenilenmesini engelle (bazı form yapılarında gerekebilir)
+        e.preventDefault();
+        // Daha önce yazdığın ekle() fonksiyonunu çalıştır
+        ekle();
+    }
+});
+
+function kontrolEt(){
+    const emptyMessage = document.getElementById("emptyMessage")
+
+    if (todoList.children.length===0){
+        emptyMessage.style.display="block"
+    }else{
+        emptyMessage.style.display="none"
+    }
+}
+
+function ekle() {
+    const todoValue = todoInput.value; // Kutudaki değeri aldık
+
+    if (todoValue === "") {
+        alert("Lütfen bir ürün giriniz!");
+        return;
+    }
+
+    // 1. Yeni bir li oluştur
+    const li = document.createElement("li");
+    
+    // 2. Metni bir span içine koyalım (Daha düzenli durur)
+    const span = document.createElement("span");
+    span.innerText = todoValue;
+
+    // 3. Çarpı simgesini (i) oluştur
+    const deleteBtn = document.createElement("i");
+    deleteBtn.className = "bi bi-x-lg";
+    deleteBtn.style.cursor = "pointer";
+    
+    // Silme fonksiyonu
+    deleteBtn.onclick = function() {
+        li.remove(); // Direkt li'yi silmek daha kolaydır
+        kontrolEt()
+    }
+
+    // 4. Hiyerarşiyi kur (Önce metni, sonra butonu ekle)
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+    todoList.appendChild(li);
+
+    // 5. Inputu temizle
+    todoInput.value = "";
+    kontrolEt()
+
+}
+
+function kaldir() {
+        if (todoList.children.length === 0) {
+            alert("Liste zaten boş!");
+            return;
+        }
+
+        if (confirm("Tüm listeyi silmek istediğine emin misin?")) {
+            todoList.innerHTML = "";
+            kontrolEt()
+            // Eğer localStorage kullanıyorsan şu satırı da ekle:
+            // localStorage.removeItem("ekle"); 
+        }
+    }
+
+const clearBtn = document.getElementById("clearInput");
+
+// Yazı yazıldıkça butonu kontrol eder
+function toggleClearButton() {
+    if (todoInput.value.length > 0) {
+        clearBtn.style.display = "block";
+    } else {
+        clearBtn.style.display = "none";
+    }
+}
+
+// Çarpıya basınca inputu temizler
+function temizle() {
+    todoInput.value = "";
+    toggleClearButton(); // Tekrar gizlemek için
+    todoInput.focus();   // Kullanıcı hemen yeni bir şey yazabilsin diye odaklan
+}
+
+// Mevcut ekle() fonksiyonunun içine de ekle ki ürün eklendiğinde çarpı gizlensin
+// (ekle fonksiyonunun en sonuna todoInput.value = "" satırından sonra ekleyebilirsin)
+// toggleClearButton();    
+
+
+</script>
+</html>

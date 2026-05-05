@@ -1,0 +1,177 @@
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        padding-top: 50px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Daha modern font */
+        color: white;
+    }
+
+    h1 {
+        font-size: 50px;
+        padding: 20px;
+        transition: 0.4s ease;
+        cursor: pointer;
+        text-shadow: 3px 3px 10px rgba(0,0,0,0.5); /* Okunabilirliği artırdık */
+    }
+
+    h1:hover {
+        color: orange;
+        transform: translateY(-5px); /* Büyümek yerine yukarı kaysın, daha şık durur */
+    }
+
+    input {
+        padding: 15px 20px;
+        width: 300px; /* Genişliği sabitledik */
+        border: none;
+        border-radius: 15px; /* Daha yuvarlak hatlar */
+        margin-bottom: 20px;
+        outline: none;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: 0.3s ease;
+    }
+
+    input:focus {
+        width: 350px;
+        box-shadow: 0 4px 20px orange;
+    }
+
+    .ekle {
+        all: unset;
+        background-color: rgb(36, 99, 0);
+        padding: 12px 30px;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .ekle:hover {
+        background-color: rgb(50, 136, 0);
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        width: 100%;
+        max-width: 500px;
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    li {
+        background: rgba(255, 166, 0, 0.384); /* Tam siyah yerine hafif transparan */
+        backdrop-filter: blur(5px); /* Cam efekti */
+        margin-bottom: 15px;
+        padding: 15px 25px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        animation: slideIn 0.3s ease-out; /* Yeni eleman gelme efekti */
+        transition: 0.4s;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.1);
+                transition: 0.4s;
+            }
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    span {
+        font-size: 18px;
+        letter-spacing: 0.5px;
+    }
+
+    i {
+        color: #ff4d4d;
+        font-size: 20px;
+        transition: 0.3s;
+    }
+
+    i:hover {
+        color: #ff0000;
+        transform: rotate(90deg) scale(1.2); /* Silme ikonuna dönme efekti */
+    }
+
+    .delete {
+        all: unset;
+        background-color: tomato;
+        padding: 12px 30px;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .delete:hover {
+        background-color: rgb(245, 58, 25);
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
+    }
+
+    /* Input ve çarpı ikonunu sarmalayan div */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Çarpı ikonunun konumu ve başlangıçta gizli olması */
+#clearInput {
+    position: absolute;
+    right: 15px;
+    top: 11px; /* Inputun padding değerine göre ayarlayabilirsin */
+    color: #888;
+    cursor: pointer;
+    display: none; /* Başlangıçta gizli */
+    transition: 0.2s;
+    font-size: 18px;
+}
+
+#clearInput:hover {
+    color: #ff4d4d;
+}
+
+/* Inputun sağ tarafında ikona yer açmak için padding-right ekledik */
+input {
+    padding-right: 40px !important; 
+}
+
+@media screen and (max-width:768px){
+    input{
+        width: 250px;
+    }
+    input:focus{
+        width: 260px;
+    }
+    body{
+        text-align: center;
+    }
+}
